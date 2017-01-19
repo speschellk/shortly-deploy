@@ -6,6 +6,7 @@ module.exports = function(grunt) {
       options: { separator: ';' },
       dist: {
         src: ['public/client/**/*.js'],
+        // dest will create basic.js file
         dest: 'public/dist/basic.js'
       }
     },
@@ -28,6 +29,7 @@ module.exports = function(grunt) {
     uglify: {
       target: {
         files: {
+          //destination                   //source 
           'public/dist/basic.min.js': ['public/client/**/*.js']
         }
       }
@@ -61,7 +63,7 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
-        script: 'server.js'
+        command: 'git push live master'
       }
     },
   });
@@ -104,17 +106,15 @@ module.exports = function(grunt) {
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {
       // add your production server task here
-        //build process
-      console.log('nothing');
+      grunt.task.run([ 'server-prod' ]);  
     } else {
-      console.log('upload: n');
       grunt.task.run([ 'server-dev' ]);
     }
   });
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
-    'test', 'upload'
+    'test', 'build', 'upload'  
   ]);
 
 

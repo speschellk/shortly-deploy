@@ -3,9 +3,14 @@ var express = require('express');
 var expect = require('chai').expect;
 var app = require('../server-config.js');
 
-var db = require('../app/config');
+var db = require('../app/config-mongo.js');
 var User = require('../app/models/user');
 var Link = require('../app/models/link');
+
+var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+//assert.equal(query.exec().constructor, require('bluebird'));
+
 
 /////////////////////////////////////////////////////
 // NOTE: these tests are designed for mongo!

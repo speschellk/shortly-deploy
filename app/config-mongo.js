@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://localhost:27017/shortly-deploy');
+mongoose.connect('mongodb://localhost:27017/pajamas');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
